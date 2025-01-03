@@ -112,7 +112,7 @@ export default function Home() {
         </p>
         <div className="max-w-xl mx-auto mt-4">
           {/* <Progress value={progress} className="h-1" /> */}
-          <p className="text-xs text-center text-zinc-400 mt-1">
+          <p className="text-xs text-center text-zinc-600 dark:text-zinc-400 mt-1">
             Day {Math.floor((progress * 365) / 100)} of 365
           </p>
         </div>
