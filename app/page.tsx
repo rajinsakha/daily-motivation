@@ -130,7 +130,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="max-w-5xl space-y-4"
           >
-            <h1 className="text-2xl leading-[1.4] sm:text-3xl md:text-4xl lg:text-5xl text-center font-bold uppercase text-white">
+            <h1 className="text-2xl leading-[1.4] sm:text-3xl md:text-4xl lg:text-5xl text-center font-bold uppercase dark:text-white text-zinc-900">
               {quote?.quote}
             </h1>
             <p className="text-right text-lg sm:text-xl">- {quote?.author}</p>
