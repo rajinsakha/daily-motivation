@@ -1,14 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { getCurrentDayOfWeek } from "@/lib/utils";
 import quotesData from "@/constants/data.json";
 import { Quote } from "@/types/data";
 import QuoteSkeleton from "@/components/quote-skeleton";
 import { motion } from "framer-motion";
-import { Share2, Copy, Sun, Moon } from "lucide-react";
+import { Share2, Copy, Sun, Moon, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
+import QuoteImage from "@/components/quote-image";
 // import { Progress } from "@/components/ui/progress"
 
 export default function Home() {
@@ -17,6 +18,9 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const { theme, setTheme } = useTheme();
   const [progress, setProgress] = useState(0);
+  const [quoteCanvas, setQuoteCanvas] = useState<HTMLCanvasElement | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchQuote = () => {
@@ -86,6 +90,22 @@ export default function Home() {
     }
   };
 
+  const saveAsWallpaper = () => {
+    if (quoteCanvas) {
+      const link = document.createElement("a");
+      link.download = "dailymotive-wallpaper.png";
+      link.href = quoteCanvas.toDataURL();
+      link.click();
+      toast.success("Wallpaper saved successfully!");
+    } else {
+      toast.error("Failed to generate wallpaper. Please try again.");
+    }
+  };
+
+  const handleCanvasReady = useCallback((canvas: HTMLCanvasElement) => {
+    setQuoteCanvas(canvas);
+  }, []);
+
   return (
     <main className="min-h-screen p-8 sm:p-12 md:p-16 lg:p-20 text-zinc-900 dark:text-white bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 transition-colors duration-300">
       <div className="fixed top-4 right-4 flex gap-2">
@@ -135,7 +155,7 @@ export default function Home() {
             </h1>
             <p className="text-right text-lg sm:text-xl">- {quote?.author}</p>
 
-            <div className="flex justify-center gap-2 mt-12">
+            <div className="flex justify-center gap-2 mt-16">
               <Button
                 variant="secondary"
                 onClick={copyToClipboard}
@@ -143,6 +163,15 @@ export default function Home() {
               >
                 <Copy className="h-4 w-4 mr-2" />
                 Copy
+              </Button>
+
+              <Button
+                variant="secondary"
+                onClick={saveAsWallpaper}
+                className="rounded-full"
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Save as Wallpaper
               </Button>
               <Button
                 variant="secondary"
@@ -156,6 +185,13 @@ export default function Home() {
           </motion.div>
         )}
       </section>
+      {quote && (
+        <QuoteImage
+          quote={quote.quote}
+          author={quote.author}
+          onCanvasReady={handleCanvasReady}
+        />
+      )}
     </main>
   );
 }
