@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect,  useState } from "react";
 import { getCurrentDayOfWeek } from "@/lib/utils";
 import quotesData from "@/constants/data.json";
 import { Quote } from "@/types/data";
