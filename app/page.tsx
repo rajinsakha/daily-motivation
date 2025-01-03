@@ -135,7 +135,7 @@ export default function Home() {
             </h1>
             <p className="text-right text-lg sm:text-xl">- {quote?.author}</p>
 
-            <div className="flex justify-center gap-2 mt-10">
+            <div className="flex justify-center gap-2 mt-12">
               <Button
                 variant="secondary"
                 onClick={copyToClipboard}
