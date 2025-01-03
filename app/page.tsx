@@ -87,13 +87,13 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen p-8 sm:p-12 md:p-16 lg:p-20 text-white bg-gradient-to-b from-zinc-900 to-zinc-800">
+    <main className="min-h-screen p-8 sm:p-12 md:p-16 lg:p-20 text-zinc-900 dark:text-white bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 transition-colors duration-300">
       <div className="fixed top-4 right-4 flex gap-2">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="rounded-full"
+          className="rounded-full text-zinc-900 dark:text-white"
         >
           {theme === "dark" ? (
             <Sun className="h-5 w-5" />
@@ -107,7 +107,7 @@ export default function Home() {
         <h2 className="text-xl sm:text-2xl text-center font-medium">
           DailyMotive: {getCurrentDayOfWeek()}&apos;s Inspiration
         </h2>
-        <p className="text-sm text-center text-zinc-400 mt-2">
+        <p className="text-sm text-center text-zinc-600 dark:text-zinc-400 mt-2">
           Your daily dose of motivation
         </p>
         <div className="max-w-xl mx-auto mt-4">
@@ -118,7 +118,7 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="flex flex-col items-center justify-center min-h-[50vh] text-white">
+      <section className="flex flex-col items-center justify-center min-h-[50vh] text-zinc-900 dark:text-white">
         {isLoading ? (
           <QuoteSkeleton />
         ) : error ? (
