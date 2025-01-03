@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Toaster } from 'sonner'
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -61,6 +62,7 @@ export default function RootLayout({
         >
           {children}
           <Toaster position="bottom-center" />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

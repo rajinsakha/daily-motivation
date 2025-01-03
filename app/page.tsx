@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { getCurrentDayOfWeek } from "@/lib/utils";
 import quotesData from "@/constants/data.json";
@@ -136,7 +135,7 @@ export default function Home() {
             </h1>
             <p className="text-right text-lg sm:text-xl">- {quote?.author}</p>
 
-            <div className="flex justify-center gap-2 mt-8">
+            <div className="flex justify-center gap-2 mt-10">
               <Button
                 variant="secondary"
                 onClick={copyToClipboard}
